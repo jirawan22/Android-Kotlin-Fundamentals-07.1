@@ -73,8 +73,12 @@ class SleepTrackerFragment : Fragment() {
         // This is necessary so that the binding can observe LiveData updates.
         binding.setLifecycleOwner(this)
 
+        val adapter = SleepNightAdapter()
+        binding.sleepList.adapter = adapter
+
         // Add an Observer on the state variable for showing a Snackbar message
         // when the CLEAR button is pressed.
+
         sleepTrackerViewModel.showSnackBarEvent.observe(this, Observer {
             if (it == true) { // Observed state is true.
                 Snackbar.make(
@@ -107,5 +111,6 @@ class SleepTrackerFragment : Fragment() {
             }
         })
         return binding.root
+
     }
 }
